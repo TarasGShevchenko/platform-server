@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors } from '@nestjs/common'
+import {Body, Controller, Delete, Get, Param, Post, UploadedFile, UseInterceptors} from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
@@ -18,6 +18,13 @@ export class PostsController {
     return this.postService.getPosts()
   }
 
+  @ApiOperation({ summary: 'Get users posts' })
+  @ApiResponse({ status: 200, type: [PostModel] })
+  @Get('/user/:userId')
+  getUserPosts(@Param('userId') userId: string) {
+    return this.postService.getUserPosts(userId)
+  }
+
   @ApiOperation({ summary: 'Get post by id' })
   @ApiResponse({ status: 200, type: PostModel })
   @Get(':id')
@@ -31,5 +38,12 @@ export class PostsController {
   @UseInterceptors(FileInterceptor('image'))
   createPost(@Body() dto: CreatePostDto, @UploadedFile() image) {
     return this.postService.create(dto, image)
+  }
+
+  @ApiOperation({ summary: 'Post deleting' })
+  @ApiResponse({ status: 200, type: PostModel })
+  @Delete(':id')
+  deletePost(@Param('id') id: string) {
+    return this.postService.deletePost(id)
   }
 }

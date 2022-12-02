@@ -20,8 +20,17 @@ export class PostsService {
     return posts
   }
 
+  async getUserPosts(id: string) {
+    const posts = await this.postRepository.findAll({ where: { userId: id }, include: { all: true } })
+    return posts
+  }
+
   async getPostById(id: string) {
     const posts = await this.postRepository.findOne({ where: { id }, include: { all: true } })
     return posts
+  }
+
+  async deletePost(id: string) {
+    return await this.postRepository.destroy({ where: { id } })
   }
 }

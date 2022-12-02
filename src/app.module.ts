@@ -14,6 +14,7 @@ import { AuthModule } from './modules/auth.module'
 import { PostsModule } from './modules/posts.module'
 import { Post } from './models/posts.model'
 import { FilesModule } from './modules/files.module'
+import { CommentsModule } from './modules/comments.module'
 
 @Module({
   controllers: [],
@@ -43,6 +44,7 @@ import { FilesModule } from './modules/files.module'
     AuthModule,
     PostsModule,
     FilesModule,
+    CommentsModule,
   ],
 })
 export class AppModule {}
