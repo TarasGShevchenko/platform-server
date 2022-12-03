@@ -11,23 +11,19 @@ export class PostsService {
 
   async create(dto: CreatePostDto, image: any) {
     const fileName = await this.fileService.createFile(image)
-    const post = await this.postRepository.create({ ...dto, image: fileName })
-    return post
+    return await this.postRepository.create({ ...dto, image: fileName })
   }
 
   async getPosts() {
-    const posts = await this.postRepository.findAll({ include: { all: true } })
-    return posts
+    return await this.postRepository.findAll({ include: { all: true } })
   }
 
   async getUserPosts(id: string) {
-    const posts = await this.postRepository.findAll({ where: { userId: id }, include: { all: true } })
-    return posts
+    return await this.postRepository.findAll({ where: { userId: id }, include: { all: true } })
   }
 
   async getPostById(id: string) {
-    const posts = await this.postRepository.findOne({ where: { id }, include: { all: true } })
-    return posts
+    return await this.postRepository.findOne({ where: { id }, include: { all: true } })
   }
 
   async deletePost(id: string) {

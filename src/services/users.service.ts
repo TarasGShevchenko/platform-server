@@ -18,18 +18,15 @@ export class UsersService {
   }
 
   async getAllUsers() {
-    const users = await this.userRepository.findAll({ include: { all: true } })
-    return users
+    return  await this.userRepository.findAll({ include: { all: true } })
   }
 
   async getUserByUsername(username: string) {
-    const user = await this.userRepository.findOne({ where: { username }, include: { all: true } })
-    return user
+    return await this.userRepository.findOne({ where: { username }, include: { all: true } })
   }
 
   async getUserByEmail(email: string) {
-    const user = await this.userRepository.findOne({ where: { email }, include: { all: true } })
-    return user
+    return await this.userRepository.findOne({ where: { email }, include: { all: true } })
   }
 
   async addRole(dto: AddRoleDto) {
