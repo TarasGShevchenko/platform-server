@@ -14,6 +14,7 @@ import { AuthModule } from './modules/auth.module'
 import { PostsModule } from './modules/posts.module'
 import { Post } from './models/posts.model'
 import { FilesModule } from './modules/files.module'
+import { Comment } from './models/comments.model'
 import { CommentsModule } from './modules/comments.module'
 
 @Module({
@@ -36,7 +37,7 @@ import { CommentsModule } from './modules/comments.module'
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User, Role, UserRoles, Post],
+      models: [User, Role, UserRoles, Post, Comment],
       autoLoadModels: true,
     }),
     UsersModule,

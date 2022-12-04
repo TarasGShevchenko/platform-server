@@ -1,7 +1,7 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
 import { ApiProperty } from '@nestjs/swagger'
 
-import { User } from './'
+import { User, Comment } from './'
 
 interface PostCreationAttrs {
   title: string
@@ -34,4 +34,8 @@ export class Post extends Model<Post, PostCreationAttrs> {
 
   @BelongsTo(() => User)
   author: User
+
+  @ForeignKey(() => Comment)
+  @Column({ type: DataType.INTEGER })
+  commentCount: number
 }
