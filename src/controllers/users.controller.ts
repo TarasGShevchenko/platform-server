@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, Patch, UseGuards } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
 import { BanUserDto, CreateUserDto, AddRoleDto } from '../dto'
@@ -44,6 +44,17 @@ export class UsersController {
   @Get(':email')
   getUserByEmail(@Param('email') email: string) {
     return this.usersService.getUserByEmail(email)
+  }
+  @ApiOperation({ summary: 'Update user' })
+  @ApiResponse({ status: 200, type: User })
+  @UseGuards(RolesGuard)
+  @Patch('/:id/update')
+  updateUser(
+    @Param('id') id: string,
+    @Body('avatarLogo') avatarLogo: string,
+    @Body('avatarBackground') avatarBackground: string,
+  ) {
+    return this.usersService.updateUser(id, avatarLogo, avatarBackground)
   }
 
   @ApiOperation({ summary: 'Issue a role' })

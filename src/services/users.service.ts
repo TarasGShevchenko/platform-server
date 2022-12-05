@@ -18,7 +18,7 @@ export class UsersService {
   }
 
   async getAllUsers() {
-    return  await this.userRepository.findAll({ include: { all: true } })
+    return await this.userRepository.findAll({ include: { all: true } })
   }
 
   async getUserByUsername(username: string) {
@@ -27,6 +27,10 @@ export class UsersService {
 
   async getUserByEmail(email: string) {
     return await this.userRepository.findOne({ where: { email }, include: { all: true } })
+  }
+
+  async updateUser(id: string, logo?: string, background?: string) {
+    return await this.userRepository.update({ avatarLogo: logo, avatarBackground: background }, { where: { id } })
   }
 
   async addRole(dto: AddRoleDto) {
