@@ -2,6 +2,7 @@ import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize
 import { ApiProperty } from '@nestjs/swagger'
 
 import { User, Comment } from './'
+import { Like } from '../likes/likes.model'
 
 interface PostCreationAttrs {
   title: string
@@ -38,4 +39,8 @@ export class Post extends Model<Post, PostCreationAttrs> {
   @ForeignKey(() => Comment)
   @Column({ type: DataType.INTEGER })
   commentCount: number
+
+  @ForeignKey(() => Like)
+  @Column({ type: DataType.JSONB, defaultValue: [] })
+  postLikes: string[]
 }
