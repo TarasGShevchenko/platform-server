@@ -16,8 +16,8 @@
   "production": {
     "username": "postgres",
     "password": "postgres",
-    "database": "platform_production",
-    "host": "127.0.0.1",
+    "database": "platform",
+    "host": "serverplatform.cjkxcnydfutv.eu-north-1.rds.amazonaws.com",
     "dialect": "postgres"
   }
 }
